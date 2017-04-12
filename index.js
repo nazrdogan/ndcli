@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const readline = require('readline');
 const path = require('path');
 const fs = require('fs');
@@ -22,13 +23,13 @@ if (fs.existsSync(currentPath + "/config.xml")) {
 				}
 				const rl = readline.createInterface({input: process.stdin, output: process.stdout});
 				rl.question(chalk.green('Please Select Device \n'), (answer) => {
-					 log(chalk.green("Your selected Device => "+deviceList[answer]));
+						log(chalk.green("Your selected Device => " + deviceList[answer]));
 						exec('cordova emulate ios --target="' + deviceList[answer] + '"', (error, stdout, stderr) => {
 								console.log(stdout);
-								if (stderr == null){
-                	const spinner = ora('Running on Simulator').start();
-								}				
-								console.log(""+stderr);
+								if (stderr == null) {
+										const spinner = ora('Running on Simulator').start();
+								}
+								console.log("" + stderr);
 						});
 						rl.close();
 				});
